@@ -105,10 +105,12 @@ public class RegistrarDueñoyMascota extends javax.swing.JFrame {
         jLabel7.setText("Correo Electronico:");
 
         jButton1.setBackground(new java.awt.Color(51, 204, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Editar");
 
         jButton2.setBackground(new java.awt.Color(51, 204, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Nuevo Registro");
 
@@ -181,7 +183,7 @@ public class RegistrarDueñoyMascota extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 350, 520));
@@ -232,6 +234,7 @@ public class RegistrarDueñoyMascota extends javax.swing.JFrame {
         jLabel19.setText("N° Dni Propietario:");
 
         jButton3.setBackground(new java.awt.Color(51, 204, 255));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Nuevo Registro");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -245,10 +248,12 @@ public class RegistrarDueñoyMascota extends javax.swing.JFrame {
         jButton4.setText("Buscar");
 
         jButton5.setBackground(new java.awt.Color(51, 204, 255));
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Agregar");
 
         jButton6.setBackground(new java.awt.Color(51, 204, 255));
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Guardar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -370,7 +375,7 @@ public class RegistrarDueñoyMascota extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton3))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 610, 520));
