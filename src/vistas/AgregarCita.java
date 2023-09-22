@@ -16,7 +16,7 @@ public class AgregarCita extends javax.swing.JFrame {
     public AgregarCita() {
         initComponents();
         setTitle("Agregar Cita");
-        setSize(1100,600);
+        setSize(400,510);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();
