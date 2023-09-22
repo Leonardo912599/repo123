@@ -16,7 +16,7 @@ public class Estetica extends javax.swing.JFrame {
     public Estetica() {
         initComponents();
         setTitle("Estética");
-        setSize(1000,500);
+        setSize(1000,570);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();

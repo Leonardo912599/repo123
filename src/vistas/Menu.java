@@ -16,7 +16,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setTitle("Menu");
-        setSize(830,500);
+        setSize(850,500);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();
@@ -165,7 +165,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 180, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 700));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
