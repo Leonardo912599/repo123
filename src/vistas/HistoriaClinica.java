@@ -288,7 +288,8 @@ public class HistoriaClinica extends javax.swing.JFrame {
         jButton2.setText("Modificar historia Clinica");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(51, 204, 255));
         jLabel17.setText("Historia Clinica");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
 
@@ -312,7 +313,6 @@ public class HistoriaClinica extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Ver Registros");
-        jButton3.setActionCommand("Ver Registros");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 110, -1));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
