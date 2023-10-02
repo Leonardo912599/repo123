@@ -42,14 +42,14 @@ public class HistorialConsulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 255));
         jLabel1.setText("Historial Consultas");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id Consulta", "Especie", "Nombre mascota", "Raza", "Sintomas", "Observaciones", "Diagnostico", "Receta Medica", "Fecha Consulta"
+                "Id Consulta", "Especie", "Nombre mascota", "Raza", "Sintomas", "Observaciones", "Diagnostico", "Receta Medica", "Fecha Consulta", "Veterinario"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
