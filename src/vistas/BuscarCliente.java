@@ -4,19 +4,25 @@
  */
 package vistas;
 
+import Controladores.ControladorBuscarCliente;
+import modelos.Cliente;
+import modelos.ClienteDao;
 
-public class BuscarDueño extends javax.swing.JFrame {
 
-    /**
-     * Creates new form BuscarDueño
-     */
-    public BuscarDueño() {
+public class BuscarCliente extends javax.swing.JFrame {
+
+    Cliente cliente = new Cliente();
+    ClienteDao clienteDao = new ClienteDao();
+     RegistrarDueñoyMascota rdm = new RegistrarDueñoyMascota();
+    public BuscarCliente() {
         initComponents();
         setTitle("Buscar Dueño");
         setSize(800,500);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();
+        ControladorBuscarCliente cbc = new ControladorBuscarCliente(cliente, clienteDao, this);
+        cbc.listarClientes();
     }
 
     /**
@@ -31,30 +37,31 @@ public class BuscarDueño extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        cmb_cliente = new javax.swing.JComboBox<>();
+        txt_buscarCliente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_cliente = new javax.swing.JTable();
+        button_buscar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel1.setText("Buscar Dueño");
+        jLabel1.setText("Buscar Cliente");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Seleccione como desea buscar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 77, -1, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Dni" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 130, 30));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 150, 30));
+        cmb_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Dni" }));
+        jPanel1.add(cmb_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 130, 30));
+        jPanel1.add(txt_buscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 150, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -62,14 +69,33 @@ public class BuscarDueño extends javax.swing.JFrame {
                 "N° Documento", "Nombre", "Apellidos", "Celular", "Correo Electronico"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table_cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_clienteMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_cliente);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 670, 270));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 670, 270));
+
+        button_buscar.setBackground(new java.awt.Color(51, 204, 255));
+        button_buscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        button_buscar.setForeground(new java.awt.Color(255, 255, 255));
+        button_buscar.setText("Buscar");
+        jPanel1.add(button_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 100, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void table_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_clienteMouseClicked
+       if(evt.getSource() == table_cliente){
+           int row = table_cliente.rowAtPoint(evt.getPoint());
+            rdm.txt_dniPropietario.setText(table_cliente.getValueAt(row,0).toString());
+            rdm.setVisible(true);
+       }
+    }//GEN-LAST:event_table_clienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -88,31 +114,33 @@ public class BuscarDueño extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarDueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarDueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarDueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarDueño.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarDueño().setVisible(true);
+                new BuscarCliente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JButton button_buscar;
+    public javax.swing.JComboBox<String> cmb_cliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTable table_cliente;
+    public javax.swing.JTextField txt_buscarCliente;
     // End of variables declaration//GEN-END:variables
 }

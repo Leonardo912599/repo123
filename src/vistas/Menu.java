@@ -60,7 +60,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Registrar Paciente-Dueño");
+        jLabel2.setText("Registrar Mascota-Cliente");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 147, 68));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, 70));
@@ -144,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(51, 102, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Usuarios");
+        jLabel5.setText("Veterinarios");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -153,7 +153,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel5)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -97,7 +97,7 @@ public class Vacuna_Desparasitacion extends javax.swing.JFrame {
         jLabel1.setText("Vacunación y Desparasitación");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("ID Paciente:");
+        jLabel10.setText("ID Mascota:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

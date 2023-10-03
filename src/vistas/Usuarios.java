@@ -45,7 +45,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel1.setText("Lista de Usuarios");
+        jLabel1.setText("Lista de Veterinarios");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
