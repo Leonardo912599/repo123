@@ -12,21 +12,21 @@ import modelos.Cliente;
 import modelos.ClienteDao;
 import modelos.Mascota;
 import modelos.MascotaDao;
-import vistas.RegistrarDueñoyMascota;
+import vistas.VistaRegistrarClienteyMascota;
 
-public class ControladorRegistrarDueñoyMascota implements ActionListener {
+public class ControladorRegistrarClienteyMascota implements ActionListener {
 
     private Cliente cliente;
     private ClienteDao clienteDao;
     private Mascota mascota;
     private MascotaDao mascotaDao;
-    private RegistrarDueñoyMascota rdm;
+    private VistaRegistrarClienteyMascota rdm;
    
 
-    public ControladorRegistrarDueñoyMascota(Cliente cliente, Mascota mascota, MascotaDao mascotaDao, ClienteDao clienteDao, RegistrarDueñoyMascota registrarDueñoyMascota) {
+    public ControladorRegistrarClienteyMascota(Cliente cliente, Mascota mascota, MascotaDao mascotaDao, ClienteDao clienteDao, VistaRegistrarClienteyMascota rdm) {
         this.cliente = cliente;
         this.mascota = mascota;
-        this.rdm = registrarDueñoyMascota;
+        this.rdm = rdm;
         this.clienteDao = clienteDao;
         this.mascotaDao = mascotaDao;
         this.rdm.button_buscarDueno.addActionListener(this);
@@ -98,15 +98,17 @@ public class ControladorRegistrarDueñoyMascota implements ActionListener {
 
             } else {
 
-                mascota.setNombre(rdm.txt_nombre.getText().trim());
+                mascota.setNombre(rdm.txt_nombreMascota.getText().trim());
                 mascota.setEdad(rdm.txt_edad.getText().trim());
                 mascota.setRaza(rdm.txt_raza.getText().trim());
                 mascota.setColor(rdm.txt_color.getText().trim());
                 mascota.setTamano(rdm.txt_tamano.getText().trim());
                 mascota.setSexo((String) rdm.cmb_sexo.getSelectedItem());
-                mascota.setEspecie((String) rdm.cmb_especie.getSelectedItem());
                 mascota.setFecha_nacimiento(rdm.dateChooser_FechaNacimiento.getDate());
                 mascota.setDni_cliente(rdm.txt_dniPropietario.getText().trim());
+                
+                int id_animal = mascotaDao.obtenerIdAnimal(rdm.cmb_animal.getSelectedItem().toString());
+                mascota.setId_animal(id_animal);
 
                 if (mascotaDao.registrarMascota(mascota)) {
                     limpiarCamposMascota();
@@ -142,7 +144,7 @@ public class ControladorRegistrarDueñoyMascota implements ActionListener {
         rdm.txt_raza.setText("");
         rdm.txt_color.setText("");
         rdm.txt_tamano.setText("");
-        rdm.cmb_especie.setSelectedIndex(0);
+        rdm.cmb_animal.setSelectedIndex(0);
         rdm.txt_dniPropietario.setText("");
     }
 

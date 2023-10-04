@@ -5,18 +5,25 @@
 package vistas;
 
 import Controladores.ControladorBuscarCliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 import modelos.Cliente;
 import modelos.ClienteDao;
+import modelos.Conexion;
 
 
-public class BuscarCliente extends javax.swing.JFrame {
+public class VistaBuscarCliente extends javax.swing.JFrame {
 
     Cliente cliente = new Cliente();
     ClienteDao clienteDao = new ClienteDao();
-     RegistrarDueñoyMascota rdm = new RegistrarDueñoyMascota();
-    public BuscarCliente() {
+    VistaRegistrarClienteyMascota rdm = new VistaRegistrarClienteyMascota();
+    public VistaBuscarCliente() {
         initComponents();
-        setTitle("Buscar Dueño");
+        setTitle("Buscar Cliente");
         setSize(800,500);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -96,7 +103,61 @@ public class BuscarCliente extends javax.swing.JFrame {
             rdm.setVisible(true);
        }
     }//GEN-LAST:event_table_clienteMouseClicked
+    Conexion conexion = new Conexion();
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
+    public void buscarCliente(JComboBox<String> comboBox) {
+        String query = "SELECT * FROM cliente AS cli";
+         
+        if (comboBox.getSelectedItem().equals("Nombre")) {
+            String nombreBuscado = txt_buscarCliente.getText();
+            if (!nombreBuscado.isEmpty()) {
+                query += " WHERE cli.nombre LIKE ?";
+            }
+        } else if (comboBox.getSelectedItem().equals("Dni")) {
+            String dniBuscado = txt_buscarCliente.getText();
+            if (!dniBuscado.isEmpty()) {
+                query += " WHERE cli.dni = ?";
+            }
+        }
 
+        try {
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(query);
+
+            if (comboBox.getSelectedItem().equals("Nombre")) {
+                String nombreBuscado = txt_buscarCliente.getText();
+                if (!nombreBuscado.isEmpty()) {
+                    pst.setString(1, "%" + nombreBuscado + "%");
+                }
+            } else if (comboBox.getSelectedItem().equals("Dni")) {
+                String dniBuscado = txt_buscarCliente.getText();
+                if (!dniBuscado.isEmpty()) {
+                    pst.setString(1, dniBuscado);
+                }
+            }
+
+            rs = pst.executeQuery();
+
+            
+            DefaultTableModel model = (DefaultTableModel) table_cliente.getModel();
+            model.setRowCount(0);
+
+            while (rs.next()) {
+                Object[] row = new Object[5];
+                row[0] = rs.getString("dni");
+                row[1] = rs.getString("nombre");
+                row[2] = rs.getString("apellido");
+                row[3] = rs.getString("celular");
+                row[4] = rs.getString("correo_electronico");
+                model.addRow(row);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -114,21 +175,23 @@ public class BuscarCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarCliente().setVisible(true);
+                new VistaBuscarCliente().setVisible(true);
             }
         });
     }

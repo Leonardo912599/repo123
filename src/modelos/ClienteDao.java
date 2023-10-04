@@ -10,10 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import vistas.BuscarCliente;
 
 public class ClienteDao {
 
@@ -21,10 +18,9 @@ public class ClienteDao {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
-    public BuscarCliente bc;
-
+   
     
-
+  
     //Registrar Cliente
     public boolean registrarCliente(Cliente cliente) {
 
@@ -83,7 +79,7 @@ public class ClienteDao {
     List<Cliente> list_cliente = new ArrayList<>();
 
     if (value == null) {
-        return list_cliente; // O manejar la situación de valor nulo según tus necesidades.
+        return list_cliente; 
     }
 
     String query = "SELECT * FROM cliente WHERE dni = ?";
@@ -133,58 +129,6 @@ public class ClienteDao {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al modificar los datos del cliente" + e);
             return false;
-        }
-    }
-
-    public void buscarCliente(JComboBox<String> comboBox) {
-        String query = "SELECT * FROM cliente AS cli";
-
-        if (comboBox.getSelectedItem().equals("Nombre")) {
-            String nombreBuscado = bc.txt_buscarCliente.getText();
-            if (!nombreBuscado.isEmpty()) {
-                query += " WHERE cli.nombre LIKE ?";
-            }
-        } else if (comboBox.getSelectedItem().equals("Dni")) {
-            String dniBuscado = bc.txt_buscarCliente.getText();
-            if (!dniBuscado.isEmpty()) {
-                query += " WHERE cli.dni = ?";
-            }
-        }
-
-        try {
-            conn = conexion.getConnection();
-            pst = conn.prepareStatement(query);
-
-            if (comboBox.getSelectedItem().equals("Nombre")) {
-                String nombreBuscado = bc.txt_buscarCliente.getText();
-                if (!nombreBuscado.isEmpty()) {
-                    pst.setString(1, "%" + nombreBuscado + "%");
-                }
-            } else if (comboBox.getSelectedItem().equals("Dni")) {
-                String dniBuscado = bc.txt_buscarCliente.getText();
-                if (!dniBuscado.isEmpty()) {
-                    pst.setString(1, dniBuscado);
-                }
-            }
-
-            rs = pst.executeQuery();
-
-            // Aquí se procesan los resultados y se llenan la tabla con los datos obtenidos
-            DefaultTableModel model = (DefaultTableModel) bc.table_cliente.getModel();
-            model.setRowCount(0);
-
-            while (rs.next()) {
-                Object[] row = new Object[5];
-                row[0] = rs.getString("dni");
-                row[1] = rs.getString("nombre");
-                row[2] = rs.getString("apellido");
-                row[3] = rs.getString("celular");
-                row[4] = rs.getString("correo_electronico");
-                model.addRow(row);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
 

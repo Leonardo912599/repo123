@@ -13,22 +13,18 @@ import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import modelos.Cliente;
 import modelos.ClienteDao;
-import vistas.BuscarCliente;
-import vistas.RegistrarDueñoyMascota;
+import vistas.VistaBuscarCliente;
 
-public class ControladorBuscarCliente implements ActionListener,MouseListener {
+public class ControladorBuscarCliente implements ActionListener{
 
-    private Cliente cliente;
     private ClienteDao clienteDao;
-    private BuscarCliente bc;
+    private VistaBuscarCliente bc;
     DefaultTableModel model = new DefaultTableModel();
 
-    public ControladorBuscarCliente(Cliente cliente, ClienteDao clienteDao, BuscarCliente bc) {
-        this.cliente = cliente;
+    public ControladorBuscarCliente(Cliente cliente, ClienteDao clienteDao, VistaBuscarCliente bc) {
         this.clienteDao = clienteDao;
         this.bc = bc;
         this.bc.button_buscar.addActionListener(this);
-        this.bc.table_cliente.addMouseListener(this);
          
     }
 
@@ -57,37 +53,10 @@ public class ControladorBuscarCliente implements ActionListener,MouseListener {
 
         if (e.getSource() == bc.button_buscar) {
             JComboBox<String> comboBox = (JComboBox<String>) bc.cmb_cliente;
-            clienteDao.buscarCliente(comboBox);
+            bc.buscarCliente(comboBox);
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-       
-        if(e.getSource() ==bc.table_cliente){
-            int row = bc.table_cliente.rowAtPoint(e.getPoint());
-            RegistrarDueñoyMascota rdm = new RegistrarDueñoyMascota();
-            rdm.txt_dniPropietario.setText(bc.table_cliente.getValueAt(row,0).toString());
-        }
-    }
+   
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-      
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-       
-    }
 }

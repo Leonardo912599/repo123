@@ -16,25 +16,27 @@ public class Mascota {
     private String raza;
     private String color;
     private String tamano;
-    private String especie;
     private String sexo;
     Date fecha_nacimiento;
     private String dni_cliente;
+    private int id_animal;
+    private Animal animal;
 
     public Mascota() {
     }
 
-    public Mascota(int id_mascota, String nombre, String edad, String raza, String color, String tamano, String especie, String sexo, Date fecha_nacimiento, String dni_cliente) {
+    public Mascota(int id_mascota, String nombre, String edad, String raza, String color, String tamano, String sexo, Date fecha_nacimiento, String dni_cliente, int id_animal, Animal animal) {
         this.id_mascota = id_mascota;
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
         this.color = color;
         this.tamano = tamano;
-        this.especie = especie;
         this.sexo = sexo;
         this.fecha_nacimiento = fecha_nacimiento;
         this.dni_cliente = dni_cliente;
+        this.id_animal = id_animal;
+        this.animal = animal;
     }
 
     public int getId_mascota() {
@@ -85,14 +87,6 @@ public class Mascota {
         this.tamano = tamano;
     }
 
-    public String getEspecie() {
-        return especie;
-    }
-
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -117,7 +111,21 @@ public class Mascota {
         this.dni_cliente = dni_cliente;
     }
 
-    
-    
+    public int getId_animal() {
+        return id_animal;
+    }
+
+    public void setId_animal(int id_animal) {
+        this.id_animal = id_animal;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
     
 }

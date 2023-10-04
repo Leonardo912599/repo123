@@ -9,9 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
-import vistas.RegistrarDueñoyMascota;
+import vistas.VistaRegistrarClienteyMascota;
 
 public class MascotaDao {
 
@@ -19,17 +21,17 @@ public class MascotaDao {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
-    RegistrarDueñoyMascota rdm ;
+    VistaRegistrarClienteyMascota rdm;
 
-    public MascotaDao(RegistrarDueñoyMascota rdm) {
+    public MascotaDao(VistaRegistrarClienteyMascota rdm) {
         this.rdm = rdm;
+
     }
-    
-    
+
     //Registrar Mascota
     public boolean registrarMascota(Mascota mascota) {
 
-        String query = "INSERT INTO mascota(nombre,edad,raza,color,tamano,especie,fecha_nacimiento,dni)  VALUES(?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO mascota(nombre,edad,raza,color,tamano,fecha_nacimiento,dni,sexo,id_animal)  VALUES(?,?,?,?,?,?,?,?,?)";
 
         try {
             conn = conexion.getConnection();
@@ -40,20 +42,114 @@ public class MascotaDao {
             pst.setString(3, mascota.getRaza());
             pst.setString(4, mascota.getColor());
             pst.setString(5, mascota.getTamano());
-            pst.setString(6, mascota.getEspecie());
-            
+
             Date date = rdm.dateChooser_FechaNacimiento.getDate();
             Timestamp timestamp = new Timestamp(date.getTime());
-            
-            pst.setTimestamp(7, timestamp);
-            pst.setString(8, mascota.getDni_cliente());
 
+            pst.setTimestamp(6, timestamp);
+            pst.setString(7, mascota.getDni_cliente());
+            pst.setString(8, mascota.getSexo());
+            pst.setInt(9, mascota.getId_animal());
             pst.execute();
             return true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al resgistrar a la mascota" + e);
             return false;
         }
+    }
+
+    //Listar Mascotas
+    public List listarMascota(String value) {
+
+        List<Mascota> list_mascotas = new ArrayList();
+
+        String query = """
+                       select ma.*,an.nombre as nombreAnimal from mascota as ma
+                                                             inner join animal as an on ma.id_animal = an.id_animal""";
+        String query_search_mascota = """
+                                      select ma.*,an.nombre as nombreAnimal from mascota as ma
+                                      inner join animal as an on ma.id_animal = an.id_animal WHERE ma.nombre LIKE '%""" + value + "%'";
+
+        try {
+            conn = conexion.getConnection();
+            if (value.equalsIgnoreCase("")) {
+                pst = conn.prepareStatement(query);
+                rs = pst.executeQuery();
+            } else {
+                pst = conn.prepareStatement(query_search_mascota);
+                rs = pst.executeQuery();
+            }
+
+            while (rs.next()) {
+                Mascota mascota = new Mascota();
+
+                mascota.setId_mascota(rs.getInt("id_mascota"));
+                mascota.setNombre(rs.getString("nombre"));
+                mascota.setEdad(rs.getString("edad"));
+                mascota.setRaza(rs.getString("raza"));
+                mascota.setColor(rs.getString("color"));
+                mascota.setTamano(rs.getString("tamano"));
+                mascota.setSexo(rs.getString("sexo"));
+                
+                Animal animal = new Animal();
+                animal.setNombre(rs.getString("nombreAnimal"));
+                mascota.setAnimal(animal);
+
+                list_mascotas.add(mascota);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        return list_mascotas;
+    }
+
+    public Cliente obtenerClienteDeMascota(String nombreMascota) {
+
+        String query = "SELECT c.* "
+                + "FROM cliente c "
+                + "INNER JOIN mascota m ON c.dni = m.dni "
+                + "WHERE m.nombre = ?";
+
+        try {
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(query);
+            pst.setString(1, nombreMascota);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setDni(rs.getString("dni"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellidos(rs.getString("apellido"));
+                cliente.setCelular(rs.getString("celular"));
+                cliente.setCorreo_electronico(rs.getString("correo_electronico"));
+
+                return cliente;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+        return null;
+    }
+    public int obtenerIdAnimal(String nombre) {
+        int id_Animal = 0;
+        String sql = "SELECT id_animal FROM animal WHERE nombre = ?";
+
+        try {
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                id_Animal = rs.getInt("id_animal");
+            }
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, e.toString());
+        }
+
+        return id_Animal;
     }
 
 }
