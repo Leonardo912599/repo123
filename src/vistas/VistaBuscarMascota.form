@@ -111,7 +111,7 @@
                   <Table columnCount="8" rowCount="0">
                     <Column editable="true" title="Id" type="java.lang.Object"/>
                     <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="Especie" type="java.lang.Object"/>
+                    <Column editable="true" title="Animal" type="java.lang.Object"/>
                     <Column editable="true" title="Sexo" type="java.lang.Object"/>
                     <Column editable="true" title="Tama&#xf1;o" type="java.lang.Object"/>
                     <Column editable="true" title="Color" type="java.lang.Object"/>

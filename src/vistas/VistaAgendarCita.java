@@ -101,11 +101,11 @@ public class VistaAgendarCita extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id cita", "Fecha", "Hora", "Estado", "Cita", "Detalle Cita", "Animal", "Nombre Mascota", "Sexo", "Raza"
+                "Id cita", "Fecha", "Hora", "Estado", "Cita", "Detalle Cita", "Observaciones", "Animal", "Nombre Mascota", "Sexo", "Raza"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

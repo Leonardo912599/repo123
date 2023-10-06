@@ -83,7 +83,7 @@ public class VistaRegistrarClienteyMascota extends javax.swing.JFrame {
         button_guardarMascota = new javax.swing.JButton();
         button_agregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -226,8 +226,6 @@ public class VistaRegistrarClienteyMascota extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Animal:");
-
-        cmb_animal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Gato", "Perro", "Conejo", "Ave" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 

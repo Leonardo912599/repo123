@@ -63,11 +63,6 @@ public class AgendarCitaDao {
     public boolean modificarCita(AgendarCita agendarCita) {
         
         
-        if (existeCitaExistente(agendarCita)) {
-            JOptionPane.showMessageDialog(null, "Ya existe una cita en la misma fecha y hora.");
-            return false;
-        }
-
         String query = "UPDATE agendarcita SET hora = ?,tipo_servicio = ?,fecha = ?,estado = ?,id_mascota = ?,detalle_cita = ?,observaciones = ? WHERE id_AgendarCita = ?";
 
         Date date = agregarCita.dateChooser_fechaCita.getDate();
@@ -142,7 +137,7 @@ public class AgendarCitaDao {
         List<AgendarCita> list_citas = new ArrayList();
 
         String query = """
-                       select ac.id_Agendarcita,ac.fecha,ac.hora,ac.estado,ac.tipo_servicio,ac.detalle_cita,ma.nombre,ma.sexo,ma.raza,an.nombre as nombreAnimal from agendarcita as ac
+                       select ac.id_Agendarcita,ac.fecha,ac.hora,ac.estado,ac.tipo_servicio,ac.detalle_cita,ac.observaciones,ma.nombre,ma.sexo,ma.raza,an.nombre as nombreAnimal from agendarcita as ac
                        inner join mascota as ma on ac.id_mascota = ma.id_mascota
                        inner join animal as an on ma.id_animal = an.id_animal""";
 
@@ -160,15 +155,16 @@ public class AgendarCitaDao {
                 agendarCita.setEstado(rs.getString(4));
                 agendarCita.setTipo_sevicio(rs.getString(5));
                 agendarCita.setDetalle_cita(rs.getString(6));
+                agendarCita.setObservaciones(rs.getString(7));
 
                 Mascota mascota = new Mascota();
-                mascota.setNombre(rs.getString(7));
-                mascota.setSexo(rs.getString(8));
-                mascota.setRaza(rs.getString(9));
+                mascota.setNombre(rs.getString(8));
+                mascota.setSexo(rs.getString(9));
+                mascota.setRaza(rs.getString(10));
                 agendarCita.setMascota(mascota);
 
                 Animal animal = new Animal();
-                animal.setNombre(rs.getString(10));
+                animal.setNombre(rs.getString(11));
                 agendarCita.setAnimal(animal);
 
                 list_citas.add(agendarCita);
@@ -184,7 +180,7 @@ public class AgendarCitaDao {
         List<AgendarCita> list_citas = new ArrayList();
 
         String query = """
-        select ac.id_Agendarcita,ac.fecha,ac.hora,ac.estado,ac.tipo_servicio,ac.detalle_cita,ma.nombre,ma.sexo,ma.raza,an.nombre as nombreAnimal from agendarcita as ac
+        select ac.id_Agendarcita,ac.fecha,ac.hora,ac.estado,ac.tipo_servicio,ac.detalle_cita,ac.observaciones,ma.nombre,ma.sexo,ma.raza,an.nombre as nombreAnimal from agendarcita as ac
                                inner join mascota as ma on ac.id_mascota = ma.id_mascota
                                inner join animal as an on ma.id_animal = an.id_animal
         WHERE Date(ac.fecha) = ?;
@@ -208,11 +204,12 @@ public class AgendarCitaDao {
                 agendarCita.setEstado(rs.getString(4));
                 agendarCita.setTipo_sevicio(rs.getString(5));
                 agendarCita.setDetalle_cita(rs.getString(6));
+                agendarCita.setObservaciones(rs.getString(7));
 
                 Mascota mascota = new Mascota();
-                mascota.setNombre(rs.getString(7));
-                mascota.setSexo(rs.getString(8));
-                mascota.setRaza(rs.getString(9));
+                mascota.setNombre(rs.getString(8));
+                mascota.setSexo(rs.getString(9));
+                mascota.setRaza(rs.getString(10));
                 agendarCita.setMascota(mascota);
                 
                 Animal animal = new Animal();
@@ -225,6 +222,18 @@ public class AgendarCitaDao {
             JOptionPane.showMessageDialog(null, e.toString());
         }
         return list_citas;
+    }
+     public void deleteCita(int id) {
+        String sql = "DELETE FROM agendarcita WHERE id_AgendarCita=?";
+        try {
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
     }
 
 }

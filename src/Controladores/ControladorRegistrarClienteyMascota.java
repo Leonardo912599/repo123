@@ -35,6 +35,7 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
         this.rdm.button_guardarMascota.addActionListener(this);
         this.rdm.button_cancelarDueno.addActionListener(this);
         this.rdm.button_agregar.addActionListener(this);
+        this.mascotaDao.llenarComboBoxAnimal(rdm.cmb_animal);
 
     }
 
@@ -51,10 +52,13 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Es obligatorio rellenar los campos");
             } else {
                 cliente.setDni(rdm.txt_nroDocumento.getText().trim());
-                cliente.setNombre(rdm.txt_nombre.getText().trim());
-                cliente.setApellidos(rdm.txt_apellidos.getText().trim());
+                cliente.setNombre(rdm.txt_nombre.getText());
+                cliente.setApellidos(rdm.txt_apellidos.getText());
                 cliente.setCelular(rdm.txt_celular.getText().trim());
-                cliente.setCorreo_electronico(rdm.txt_correoElectronico.getText().trim());
+                String correo_electronico = rdm.txt_correoElectronico.getText().trim();
+                if(!correo_electronico.isEmpty()){
+                    cliente.setCorreo_electronico(correo_electronico);
+                }
 
                 if (clienteDao.registrarCliente(cliente)) {
                     limpiarCampos();
@@ -66,7 +70,7 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
 
         } else if (e.getSource() == rdm.button_editar) {
             if (rdm.txt_nroDocumento.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "NO se ha seleccionado ningun cliente");
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun cliente");
             } else {
 
                 cliente.setDni(rdm.txt_nroDocumento.getText().trim());

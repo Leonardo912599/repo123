@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import vistas.VistaRegistrarClienteyMascota;
 
@@ -150,6 +151,46 @@ public class MascotaDao {
         }
 
         return id_Animal;
+    }
+    public int obtenerIdMascota(String nombre) {
+        int id_Mascota = 0;
+        String sql = "SELECT id_mascota FROM mascota WHERE nombre = ?";
+
+        try {
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, nombre);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                id_Mascota = rs.getInt("id_mascota");
+            }
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(null, e.toString());
+        }
+
+        return id_Mascota;
+    }
+    public void llenarComboBoxAnimal(JComboBox<String> cmb_bBox) {
+
+        String query = "SELECT nombre FROM animal";
+
+        cmb_bBox.removeAllItems();
+
+        try {
+
+            conn = conexion.getConnection();
+            pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                String nombre = rs.getString("nombre");
+                cmb_bBox.addItem(nombre);
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 }

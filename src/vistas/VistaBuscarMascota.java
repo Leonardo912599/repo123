@@ -57,7 +57,7 @@ public class VistaBuscarMascota extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nombre", "Especie", "Sexo", "Tamaño", "Color", "Raza", "Edad"
+                "Id", "Nombre", "Animal", "Sexo", "Tamaño", "Color", "Raza", "Edad"
             }
         ));
         jScrollPane1.setViewportView(table_mascotas);

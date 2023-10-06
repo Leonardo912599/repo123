@@ -4,19 +4,29 @@
  */
 package Controladores;
 
+import Controladores.ControladorBuscarMascota.ResultadoSeleccionadoListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import modelos.AgendarCita;
 import modelos.AgendarCitaDao;
+import modelos.Cliente;
+import modelos.MascotaDao;
 import vistas.VistaBuscarMascota;
 import vistas.VistaAgregarCita;
+import vistas.VistaRegistrarClienteyMascota;
+
 
 public class ControladorAgregarCita implements ActionListener {
 
     private AgendarCita agendarCita;
     private AgendarCitaDao agendarCitaDao;
     private VistaAgregarCita vistaAgregarCita;
+    VistaBuscarMascota vistaBuscarMascota = new VistaBuscarMascota();
+    VistaRegistrarClienteyMascota rdm = new VistaRegistrarClienteyMascota();
+    MascotaDao mascotaDao = new MascotaDao(rdm);
+    ControladorBuscarMascota cbm = new ControladorBuscarMascota(mascotaDao, vistaBuscarMascota);
+    
 
     public ControladorAgregarCita(AgendarCita agendarCita, AgendarCitaDao agendarCitaDao, VistaAgregarCita vistaAgregarCita) {
         this.agendarCita = agendarCita;
@@ -25,19 +35,41 @@ public class ControladorAgregarCita implements ActionListener {
         this.vistaAgregarCita.button_buscarMascota.addActionListener(this);
         this.vistaAgregarCita.button_guardar.addActionListener(this);
         this.vistaAgregarCita.button_editar.addActionListener(this);
-        
+        this.vistaAgregarCita.button_buscarMascota.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+                cbm.setResultadoSeleccionadoListener(new ResultadoSeleccionadoListener() {
+                    public void resultadoSeleccionado(Object[] datosFila) {
+                        // Llena los campos de la interfaz principal con los datos de la fila seleccionada
+                        vistaAgregarCita.txt_nombreMascota.setText(datosFila[1].toString());
+                        vistaAgregarCita.txt_sexo.setText(datosFila[3].toString());
+                        vistaAgregarCita.txt_animal.setText(datosFila[2].toString());
+                        vistaAgregarCita.txt_raza.setText(datosFila[6].toString());
+                        
+                        Cliente cliente = mascotaDao.obtenerClienteDeMascota(datosFila[1].toString());
+                        
+                        vistaAgregarCita.txt_nroDocumento.setText(cliente.getDni());
+                        vistaAgregarCita.txt_nombreCliente.setText(cliente.getNombre());
+                        vistaAgregarCita.txt_apellidos.setText(cliente.getApellidos());
+                        vistaAgregarCita.txt_celular.setText(cliente.getApellidos());
+                        vistaAgregarCita.txt_correo.setText(cliente.getCorreo_electronico());
+                        
+                    }
+                });
+                vistaBuscarMascota.setVisible(true);
+            }
+        });
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaAgregarCita.button_buscarMascota) {
-            VistaBuscarMascota bm = new VistaBuscarMascota();
-            bm.setVisible(true);
-            vistaAgregarCita.setVisible(false);
+           // VistaBuscarMascota bm = new VistaBuscarMascota();
+           // bm.setVisible(true);
+            //vistaAgregarCita.setVisible(false);
         } else if (e.getSource() == vistaAgregarCita.button_guardar) {
             if (vistaAgregarCita.txt_nombreCliente.getText().equals("")
                     || vistaAgregarCita.txt_nombreMascota.getText().equals("")
-                    || vistaAgregarCita.txtArea_detalleCita.getText().equals("")
                     || vistaAgregarCita.txt_horaCita.getText().equals("")) {
 
                 JOptionPane.showMessageDialog(null, "Los campos estan vacios");
@@ -45,7 +77,10 @@ public class ControladorAgregarCita implements ActionListener {
                 agendarCita.setHora(vistaAgregarCita.txt_horaCita.getText());
                 agendarCita.setTipo_sevicio((String) vistaAgregarCita.cmb_servicios.getSelectedItem());
                 agendarCita.setFecha(vistaAgregarCita.dateChooser_fechaCita.getDate());
-                agendarCita.setDetalle_cita(vistaAgregarCita.txtArea_detalleCita.getText());
+                String detalle_cita = vistaAgregarCita.txtArea_detalleCita.getText();
+                if(!detalle_cita.isEmpty()){
+                    agendarCita.setDetalle_cita(detalle_cita);
+                }
                 int id_mascota = agendarCitaDao.getIdMascota(vistaAgregarCita.txt_nombreMascota.getText());
                 agendarCita.setId_mascota(id_mascota);
                 
@@ -97,7 +132,8 @@ public class ControladorAgregarCita implements ActionListener {
              vistaAgregarCita.txt_horaCita.setText("");
             vistaAgregarCita.txt_sexo.setText("");
             vistaAgregarCita.txt_horaCita.setText("");
-            vistaAgregarCita.txtArea_detalleCita.setText("");
+            vistaAgregarCita.txtArea_detalleCita.setText(""); 
+            vistaAgregarCita.textArea_observaciones.setText("");
             vistaAgregarCita.cmb_estado.setSelectedIndex(0);
             vistaAgregarCita.cmb_servicios.setSelectedIndex(0);
       
