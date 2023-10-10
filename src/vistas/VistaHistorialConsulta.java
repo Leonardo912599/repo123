@@ -33,7 +33,7 @@ public class VistaHistorialConsulta extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_consultas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,7 +44,7 @@ public class VistaHistorialConsulta extends javax.swing.JFrame {
         jLabel1.setText("Historial Consultas");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_consultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -52,7 +52,7 @@ public class VistaHistorialConsulta extends javax.swing.JFrame {
                 "Id Consulta", "Especie", "Nombre mascota", "Raza", "Sintomas", "Observaciones", "Diagnostico", "Receta Medica", "Fecha Consulta", "Veterinario"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_consultas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 930, 260));
 
@@ -100,6 +100,6 @@ public class VistaHistorialConsulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable table_consultas;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,19 +7,19 @@ package modelos;
 
 public class Estetica {
 
-    private int id_estetica;
+    private Integer id_estetica;
     private int bano;
     private int corte;
     private String observaciones;
     private double subtotal;
-    private double descuento;
+    private String descuento;
     private double total;
     private String descripcion;
 
     public Estetica() {
     }
 
-    public Estetica(int id_estetica, int bano, int corte, String observaciones, double subtotal, double descuento, double total, String descripcion) {
+    public Estetica(Integer id_estetica, int bano, int corte, String observaciones, double subtotal, String descuento, double total, String descripcion) {
         this.id_estetica = id_estetica;
         this.bano = bano;
         this.corte = corte;
@@ -30,11 +30,11 @@ public class Estetica {
         this.descripcion = descripcion;
     }
 
-    public int getId_estetica() {
+    public Integer getId_estetica() {
         return id_estetica;
     }
 
-    public void setId_estetica(int id_estetica) {
+    public void setId_estetica(Integer id_estetica) {
         this.id_estetica = id_estetica;
     }
 
@@ -70,11 +70,11 @@ public class Estetica {
         this.subtotal = subtotal;
     }
 
-    public double getDescuento() {
+    public String getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(double descuento) {
+    public void setDescuento(String descuento) {
         this.descuento = descuento;
     }
 
@@ -93,5 +93,5 @@ public class Estetica {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-  
+
 }

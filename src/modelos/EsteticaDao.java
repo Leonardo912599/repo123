@@ -29,7 +29,7 @@ public class EsteticaDao {
             pst.setInt(2, estetica.getCorte());
             pst.setString(3, estetica.getObservaciones());
             pst.setDouble(4, estetica.getSubtotal());
-            pst.setDouble(5, estetica.getDescuento());
+            pst.setString(5, estetica.getDescuento());
             pst.setDouble(6, estetica.getTotal());
             pst.setString(7, estetica.getDescripcion());
 

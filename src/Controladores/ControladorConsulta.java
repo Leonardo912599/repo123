@@ -11,7 +11,11 @@ import modelos.Consulta;
 import modelos.ConsultaDao;
 import modelos.DetalleServicio;
 import modelos.DetalleServicioDao;
+import modelos.Estetica;
+import modelos.Mascota;
 import modelos.MascotaDao;
+import modelos.VacunacionDesparacitacion;
+import modelos.Veterinario;
 import vistas.VistaBuscarMascota;
 import vistas.VistaConsulta;
 import vistas.VistaRegistrarClienteyMascota;
@@ -53,6 +57,9 @@ public class ControladorConsulta implements ActionListener {
                         vistaConsulta.txt_edad.setText(datosFila[7].toString());
                                
                     }
+
+                  
+                   
                 });
                 vistaBuscarMascota.setVisible(true);
             }
@@ -94,11 +101,26 @@ public class ControladorConsulta implements ActionListener {
      
                 int id_veterinario = detalleServicioDao.obtenerIdVeterinario((String) vistaConsulta.cmb_veterinario.getSelectedItem());
 
-                detalleServicio.setId_consulta(id_consulta);
-                detalleServicio.setId_mascota(Integer.parseInt(vistaConsulta.txt_idMascota.getText()));
-                detalleServicio.setId_veterinario(id_veterinario);
-                detalleServicio.setId_vacunacion(null);
-                detalleServicio.setId_estetica(null);
+                
+                consulta.setId_consulta(id_consulta);
+                
+                detalleServicio.setConsulta(consulta);
+                
+                Mascota mascota = new Mascota();
+                mascota.setId_mascota(Integer.parseInt(vistaConsulta.txt_idMascota.getText()));
+                detalleServicio.setMascota(mascota);
+                
+                Veterinario veterinario = new Veterinario();
+                veterinario.setId_veterinario(id_veterinario);
+                detalleServicio.setVeterinario(veterinario);
+                
+                VacunacionDesparacitacion vacunacionDesparacitacion = new VacunacionDesparacitacion();
+                vacunacionDesparacitacion.setId_vacunacionDesparacitacion(null);
+                detalleServicio.setVacunacionDesparacitacion(vacunacionDesparacitacion);
+                
+                Estetica estetica = new Estetica();
+                estetica.setId_estetica(null);
+                detalleServicio.setEstetica(estetica);
 
                 boolean registroExitoso = detalleServicioDao.registrarDetalleServicio(detalleServicio);
                 if (registroExitoso) {

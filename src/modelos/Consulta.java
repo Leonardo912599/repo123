@@ -8,7 +8,7 @@ package modelos;
 
 public class Consulta {
 
-    private int id_consulta;
+    private Integer id_consulta;
     private String sintomas;
     private String observaciones;
     private String receta_medica;
@@ -18,7 +18,7 @@ public class Consulta {
     public Consulta() {
     }
 
-    public Consulta(int id_consulta, String sintomas, String observaciones, String receta_medica, String diagnostico, double total) {
+    public Consulta(Integer id_consulta, String sintomas, String observaciones, String receta_medica, String diagnostico, double total) {
         this.id_consulta = id_consulta;
         this.sintomas = sintomas;
         this.observaciones = observaciones;
@@ -27,11 +27,11 @@ public class Consulta {
         this.total = total;
     }
 
-    public int getId_consulta() {
+    public Integer getId_consulta() {
         return id_consulta;
     }
 
-    public void setId_consulta(int id_consulta) {
+    public void setId_consulta(Integer id_consulta) {
         this.id_consulta = id_consulta;
     }
 
@@ -74,6 +74,8 @@ public class Consulta {
     public void setTotal(double total) {
         this.total = total;
     }
+
+  
     
     
 }

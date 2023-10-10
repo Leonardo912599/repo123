@@ -11,10 +11,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import modelos.Cliente;
 import modelos.Mascota;
 import modelos.MascotaDao;
-import vistas.VistaAgregarCita;
 import vistas.VistaBuscarMascota;
 
 public class ControladorBuscarMascota implements KeyListener, MouseListener {
@@ -37,7 +35,7 @@ public class ControladorBuscarMascota implements KeyListener, MouseListener {
 
         model = (DefaultTableModel) vistaBuscarMascota.table_mascotas.getModel();
 
-        Object[] row = new Object[8];
+        Object[] row = new Object[9];
 
         for (int i = 0; i < list_mascota.size(); i++) {
 
@@ -49,6 +47,7 @@ public class ControladorBuscarMascota implements KeyListener, MouseListener {
             row[5] = list_mascota.get(i).getColor();
             row[6] = list_mascota.get(i).getRaza();
             row[7] = list_mascota.get(i).getEdad();
+            row[8] = list_mascota.get(i).getFecha_nacimiento();
 
             model.addRow(row);
         }
@@ -125,7 +124,7 @@ public class ControladorBuscarMascota implements KeyListener, MouseListener {
         
         DefaultTableModel modelo = (DefaultTableModel) vistaBuscarMascota.table_mascotas.getModel();
 
-        // Obtener el número de columnas en tu tabla
+        // Obtener el número de columnas en la tabla
         int numColumnas = modelo.getColumnCount();
 
         // Crear un array para almacenar los datos de la fila
@@ -168,5 +167,6 @@ public class ControladorBuscarMascota implements KeyListener, MouseListener {
     public interface ResultadoSeleccionadoListener {
 
         void resultadoSeleccionado(Object[] datosFila);
+
     }
 }

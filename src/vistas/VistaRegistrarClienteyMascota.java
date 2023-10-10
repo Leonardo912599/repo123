@@ -18,6 +18,7 @@ public class VistaRegistrarClienteyMascota extends javax.swing.JFrame {
     Mascota mascota = new Mascota();
     MascotaDao mascotaDao = new MascotaDao(this);
 
+
     
     public VistaRegistrarClienteyMascota() {
         initComponents();
@@ -421,11 +422,7 @@ public class VistaRegistrarClienteyMascota extends javax.swing.JFrame {
     }//GEN-LAST:event_button_guardarMascotaActionPerformed
 
     private void button_buscarDuenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_buscarDuenoActionPerformed
-        if(evt.getSource() == button_buscarDueno){
-            VistaBuscarCliente bc = new VistaBuscarCliente();
-            bc.setVisible(true);
-            dispose();
-        }
+        
     }//GEN-LAST:event_button_buscarDuenoActionPerformed
 
     private void button_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_agregarActionPerformed

@@ -20,7 +20,7 @@ public class VistaBuscarCliente extends javax.swing.JFrame {
 
     Cliente cliente = new Cliente();
     ClienteDao clienteDao = new ClienteDao();
-    VistaRegistrarClienteyMascota rdm = new VistaRegistrarClienteyMascota();
+  
     public VistaBuscarCliente() {
         initComponents();
         setTitle("Buscar Cliente");
@@ -97,11 +97,7 @@ public class VistaBuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void table_clienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_clienteMouseClicked
-       if(evt.getSource() == table_cliente){
-           int row = table_cliente.rowAtPoint(evt.getPoint());
-            rdm.txt_dniPropietario.setText(table_cliente.getValueAt(row,0).toString());
-            rdm.setVisible(true);
-       }
+       
     }//GEN-LAST:event_table_clienteMouseClicked
     Conexion conexion = new Conexion();
     Connection conn;

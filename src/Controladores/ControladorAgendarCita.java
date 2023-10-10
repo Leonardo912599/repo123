@@ -27,7 +27,7 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
 
     DefaultTableModel model = new DefaultTableModel();
 
-    public ControladorAgendarCita(VistaAgendarCita vistaAgendarCita, AgendarCitaDao agendarCitaDao, AgendarCita agendarCita,MascotaDao mascotaDao) {
+    public ControladorAgendarCita(VistaAgendarCita vistaAgendarCita, AgendarCitaDao agendarCitaDao, AgendarCita agendarCita, MascotaDao mascotaDao) {
         this.vistaAgendarCita = vistaAgendarCita;
         this.agendarCitaDao = agendarCitaDao;
         this.mascotaDao = mascotaDao;
@@ -36,6 +36,7 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
         this.vistaAgendarCita.button_editarCita.addMouseListener(this);
         this.vistaAgendarCita.table_cita.addMouseListener(this);
         this.vistaAgendarCita.button_borrarCita.addActionListener(this);
+        this.vistaAgendarCita.button_actualizar.addActionListener(this);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
 
             int row = vistaAgendarCita.table_cita.getSelectedRow();
             VistaAgregarCita vac = new VistaAgregarCita();
-            
+
             vac.txt_id_cita.setText(vistaAgendarCita.table_cita.getValueAt(row, 0).toString());
             vac.txt_nombreMascota.setText(vistaAgendarCita.table_cita.getValueAt(row, 8).toString());
             vac.txt_animal.setText(vistaAgendarCita.table_cita.getValueAt(row, 7).toString());
@@ -55,37 +56,37 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
             vac.txt_raza.setText(vistaAgendarCita.table_cita.getValueAt(row, 10).toString());
             Object detalle_cita = vistaAgendarCita.table_cita.getValueAt(row, 5);
             Object observaciones = vistaAgendarCita.table_cita.getValueAt(row, 6);
-            if (detalle_cita != null ) {
+            if (detalle_cita != null) {
                 vac.txtArea_detalleCita.setText(detalle_cita.toString());
             }
-            if(observaciones != null){
-                vac.txtArea_detalleCita.setText(observaciones.toString());
+            if (observaciones != null) {
+                vac.txtArea_observaciones.setText(observaciones.toString());
             }
             vac.cmb_servicios.setSelectedItem(vistaAgendarCita.table_cita.getValueAt(row, 4).toString());
             vac.cmb_estado.setSelectedItem(vistaAgendarCita.table_cita.getValueAt(row, 3).toString());
             vac.txt_horaCita.setText(vistaAgendarCita.table_cita.getValueAt(row, 2).toString());
             vac.dateChooser_fechaCita.setDate((Date) vistaAgendarCita.table_cita.getValueAt(row, 1));
-            
+
             Cliente cliente = mascotaDao.obtenerClienteDeMascota(vistaAgendarCita.table_cita.getValueAt(row, 8).toString());
-            
+
             vac.txt_nombreCliente.setText(cliente.getNombre());
             vac.txt_nroDocumento.setText(cliente.getDni());
             vac.txt_apellidos.setText(cliente.getNombre());
             vac.txt_celular.setText(cliente.getCelular());
             vac.txt_correo.setText(cliente.getCorreo_electronico());
-            
+
             vac.setVisible(true);
-        }else if(e.getSource() == vistaAgendarCita.table_cita){
-            
-             int row = vistaAgendarCita.table_cita.rowAtPoint(e.getPoint());
-             
-             Object datos = vistaAgendarCita.table_cita.getValueAt(row, 6);
-             
-             if(datos != null){
-                 vistaAgendarCita.textArea_datos.setText((String) datos);
-             }
-             vistaAgendarCita.txt_estadoCita.setText(vistaAgendarCita.table_cita.getValueAt(row, 3).toString());
-             
+        } else if (e.getSource() == vistaAgendarCita.table_cita) {
+
+            int row = vistaAgendarCita.table_cita.rowAtPoint(e.getPoint());
+
+            Object datos = vistaAgendarCita.table_cita.getValueAt(row, 6);
+
+            if (datos != null) {
+                vistaAgendarCita.textArea_datos.setText((String) datos);
+            }
+            vistaAgendarCita.txt_estadoCita.setText(vistaAgendarCita.table_cita.getValueAt(row, 3).toString());
+
         }
     }
 
@@ -98,17 +99,17 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
 
         for (int i = 0; i < list.size(); i++) {
 
-         row[0] = list.get(i).getId_agendarCita();
-                row[1] = list.get(i).getFecha();
-                row[2] = list.get(i).getHora();
-                row[3] = list.get(i).getEstado();
-                row[4] = list.get(i).getTipo_sevicio();
-                row[5] = list.get(i).getDetalle_cita();
-                row[6] = list.get(i).getObservaciones();
-                row[7] = list.get(i).getAnimal().getNombre();
-                row[8] = list.get(i).getMascota().getNombre();
-                row[9] = list.get(i).getMascota().getSexo();
-                row[10] = list.get(i).getMascota().getRaza();
+            row[0] = list.get(i).getId_agendarCita();
+            row[1] = list.get(i).getFecha();
+            row[2] = list.get(i).getHora();
+            row[3] = list.get(i).getEstado();
+            row[4] = list.get(i).getTipo_sevicio();
+            row[5] = list.get(i).getDetalle_cita();
+            row[6] = list.get(i).getObservaciones();
+            row[7] = list.get(i).getAnimal().getNombre();
+            row[8] = list.get(i).getMascota().getNombre();
+            row[9] = list.get(i).getMascota().getSexo();
+            row[10] = list.get(i).getMascota().getRaza();
 
             model.addRow(row);
         }
@@ -161,24 +162,26 @@ public class ControladorAgendarCita implements MouseListener, ActionListener {
                 model.addRow(row);
             }
             vistaAgendarCita.table_cita.setModel(model);
-        }else if(e.getSource() == vistaAgendarCita.button_borrarCita){
-             int row = vistaAgendarCita.table_cita.getSelectedRow();
-             
-              if (row == -1) {
+        } else if (e.getSource() == vistaAgendarCita.button_borrarCita) {
+            int row = vistaAgendarCita.table_cita.getSelectedRow();
+
+            if (row == -1) {
                 JOptionPane.showMessageDialog(null, "Debes seleccionar un cita para eliminar");
 
             } else {
-                int id_cita =(int) vistaAgendarCita.table_cita.getValueAt(row,0);
+                int id_cita = (int) vistaAgendarCita.table_cita.getValueAt(row, 0);
                 int question = JOptionPane.showConfirmDialog(null, "¿En realidad quieres eliminar a esta cita?");
 
                 if (question == 0) {
-                 agendarCitaDao.deleteCita(id_cita);
-                    cleanTable();  
+                    agendarCitaDao.deleteCita(id_cita);
+                    cleanTable();
                     listarCitas();
                     JOptionPane.showMessageDialog(null, "Cita eliminada con exito");
                 }
             }
-             
+
+        } else if (e.getSource() == vistaAgendarCita.button_actualizar) {
+            listarCitas();
         }
     }
 

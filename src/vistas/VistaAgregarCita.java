@@ -73,7 +73,7 @@ public class VistaAgregarCita extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        textArea_observaciones = new javax.swing.JTextArea();
+        txtArea_observaciones = new javax.swing.JTextArea();
         jLabel24 = new javax.swing.JLabel();
         button_guardar = new javax.swing.JButton();
         button_editar = new javax.swing.JButton();
@@ -212,9 +212,9 @@ public class VistaAgregarCita extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setText("Observaciones de la cita:");
 
-        textArea_observaciones.setColumns(20);
-        textArea_observaciones.setRows(5);
-        jScrollPane1.setViewportView(textArea_observaciones);
+        txtArea_observaciones.setColumns(20);
+        txtArea_observaciones.setRows(5);
+        jScrollPane1.setViewportView(txtArea_observaciones);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel24.setText("Estado:");
@@ -553,8 +553,8 @@ public class VistaAgregarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTextArea textArea_observaciones;
     public javax.swing.JTextArea txtArea_detalleCita;
+    public javax.swing.JTextArea txtArea_observaciones;
     public javax.swing.JTextField txt_animal;
     public javax.swing.JTextField txt_apellidos;
     public javax.swing.JTextField txt_celular;

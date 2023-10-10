@@ -2,25 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package modelos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-
 public class ConsultaDao {
 
-    
     Conexion conexion = new Conexion();
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
-   
+
     //Registrar Consulta
     public boolean registrarConsulta(Consulta consulta) {
 
@@ -43,6 +42,7 @@ public class ConsultaDao {
             return false;
         }
     }
+
     //Obtener id de la consulta
     public int consultaId() {
         int id = 0;
@@ -61,6 +61,7 @@ public class ConsultaDao {
         }
         return id;
     }
+
     public void llenarComboBoxVeterinario(JComboBox<String> cmb_bBox) {
 
         String query = "SELECT nombre FROM veterinario";
@@ -82,4 +83,6 @@ public class ConsultaDao {
             System.err.println(e.getMessage());
         }
     }
+
+    
 }

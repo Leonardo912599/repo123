@@ -18,9 +18,7 @@ public class ClienteDao {
     Connection conn;
     PreparedStatement pst;
     ResultSet rs;
-   
-    
-  
+
     //Registrar Cliente
     public boolean registrarCliente(Cliente cliente) {
 
@@ -72,42 +70,33 @@ public class ClienteDao {
         }
         return list_clientes;
     }
-    
+
 //Listar CLiente por id
+    public Cliente obtenerClienteById(String value) {
 
-    public List<Cliente> listarClienteById(String value) {
-    List<Cliente> list_cliente = new ArrayList<>();
+        Cliente cliente = new Cliente();
+        String query = "SELECT * FROM cliente WHERE dni = ?";
 
-    if (value == null) {
-        return list_cliente; 
-    }
+        try ( Connection conn = conexion.getConnection();  PreparedStatement pst = conn.prepareStatement(query)) {
 
-    String query = "SELECT * FROM cliente WHERE dni = ?";
+            pst.setString(1, value);
 
-    try (Connection conn = conexion.getConnection();
-         PreparedStatement pst = conn.prepareStatement(query)) {
+            try ( ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
 
-        pst.setString(1, value);
-        try (ResultSet rs = pst.executeQuery()) {
-            while (rs.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setDni(rs.getString("dni"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setApellidos(rs.getString("apellido"));
-                cliente.setCelular(rs.getString("celular"));
-                cliente.setCorreo_electronico(rs.getString("correo_electronico"));
-                list_cliente.add(cliente);
+                    cliente.setDni(rs.getString("dni"));
+                    cliente.setNombre(rs.getString("nombre"));
+                    cliente.setApellidos(rs.getString("apellido"));
+                    cliente.setCelular(rs.getString("celular"));
+                    cliente.setCorreo_electronico(rs.getString("correo_electronico"));
+                    
+                }
             }
+        } catch (SQLException e) {
         }
-    } catch (SQLException e) {
-        // Manejo de excepciones aquí
-        e.printStackTrace(); // O registra el error en un archivo de registro.
+        return cliente;
     }
-    
-    return list_cliente;
-}
 
-    
     //Modificar cliente
     public boolean modificarCliente(Cliente cliente) {
 

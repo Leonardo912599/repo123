@@ -4,6 +4,8 @@
  */
 package modelos;
 
+import vistas.VistaLogin;
+
 
 public class Main {
 
@@ -11,9 +13,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hola mundo");
-        
-        System.out.println("HOLA q");
+       
+        VistaLogin vistaLogin = new VistaLogin();
+        vistaLogin.setVisible(true);
     }
     
 }

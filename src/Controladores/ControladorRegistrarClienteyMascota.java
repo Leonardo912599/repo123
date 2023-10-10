@@ -6,21 +6,26 @@ package Controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.event.MouseInputListener;
 import modelos.Cliente;
 import modelos.ClienteDao;
 import modelos.Mascota;
 import modelos.MascotaDao;
+import vistas.VistaBuscarCliente;
 import vistas.VistaRegistrarClienteyMascota;
 
-public class ControladorRegistrarClienteyMascota implements ActionListener {
+public class ControladorRegistrarClienteyMascota implements ActionListener,MouseInputListener {
 
     private Cliente cliente;
     private ClienteDao clienteDao;
     private Mascota mascota;
     private MascotaDao mascotaDao;
     private VistaRegistrarClienteyMascota rdm;
+    
+   VistaBuscarCliente bc = new VistaBuscarCliente();
+   ControladorBuscarCliente cbc = new ControladorBuscarCliente(cliente, clienteDao, bc);
    
 
     public ControladorRegistrarClienteyMascota(Cliente cliente, Mascota mascota, MascotaDao mascotaDao, ClienteDao clienteDao, VistaRegistrarClienteyMascota rdm) {
@@ -29,13 +34,26 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
         this.rdm = rdm;
         this.clienteDao = clienteDao;
         this.mascotaDao = mascotaDao;
-        this.rdm.button_buscarDueno.addActionListener(this);
+        this.rdm.button_buscarDueno.addMouseListener(this);
         this.rdm.button_editar.addActionListener(this);
         this.rdm.button_guardarDueno.addActionListener(this);
         this.rdm.button_guardarMascota.addActionListener(this);
         this.rdm.button_cancelarDueno.addActionListener(this);
         this.rdm.button_agregar.addActionListener(this);
         this.mascotaDao.llenarComboBoxAnimal(rdm.cmb_animal);
+        this.rdm.button_buscarDueno.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               
+               cbc.setResultadoSeleccionadoListener(new ControladorBuscarCliente.ResultadoSeleccionadoListenerCliente() {
+                   public void resultadoSeleccionadoCliente(String dato) {
+                             
+                        rdm.txt_dniPropietario.setText(dato);
+                  }
+                          
+               });
+                bc.setVisible(true);
+            }
+        });
 
     }
 
@@ -123,13 +141,14 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
         }else if(e.getSource() == rdm.button_cancelarMascota){
             limpiarCamposMascota();
         }else if(e.getSource() == rdm.button_agregar){
-             List<Cliente> list = clienteDao.listarClienteById(rdm.txt_dniPropietario.getText());
+            cliente = clienteDao.obtenerClienteById(rdm.txt_dniPropietario.getText());
              
-             rdm.txt_nroDocumento.setText(list.get(0).getDni());
-             rdm.txt_nombre.setText(list.get(0).getNombre());
-             rdm.txt_apellidos.setText(list.get(0).getApellidos());
-             rdm.txt_celular.setText(list.get(0).getCelular());
-             rdm.txt_correoElectronico.setText(list.get(0).getCorreo_electronico());
+             rdm.txt_nroDocumento.setText(cliente.getDni());
+             rdm.txt_nombre.setText(cliente.getNombre());
+             rdm.txt_apellidos.setText(cliente.getApellidos());
+             rdm.txt_celular.setText(cliente.getCelular());
+             rdm.txt_correoElectronico.setText(cliente.getCorreo_electronico());
+             
         }
     }
 
@@ -150,6 +169,41 @@ public class ControladorRegistrarClienteyMascota implements ActionListener {
         rdm.txt_tamano.setText("");
         rdm.cmb_animal.setSelectedIndex(0);
         rdm.txt_dniPropietario.setText("");
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+     
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+       
     }
 
 }

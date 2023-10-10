@@ -75,13 +75,13 @@ public class VistaEstetica extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         txt_subtotal = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        txt_descuento = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         txt_total = new javax.swing.JTextField();
         button_guardar = new javax.swing.JButton();
         button_calcularPago = new javax.swing.JButton();
         button_cancelar = new javax.swing.JButton();
         txt_tamano = new javax.swing.JTextField();
+        cmb_descuento = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -212,13 +212,6 @@ public class VistaEstetica extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Descuento:");
 
-        txt_descuento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txt_descuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_descuentoActionPerformed(evt);
-            }
-        });
-
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Total (S/.):");
 
@@ -247,6 +240,13 @@ public class VistaEstetica extends javax.swing.JFrame {
         button_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         txt_tamano.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        cmb_descuento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "       ", "5%", "10%", "20%" }));
+        cmb_descuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_descuentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,14 +324,14 @@ public class VistaEstetica extends javax.swing.JFrame {
                                     .addComponent(jLabel27)
                                     .addComponent(jLabel26))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(56, 56, 56)
-                                        .addComponent(txt_subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(54, 54, 54)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_descuento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txt_subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                            .addComponent(cmb_descuento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addComponent(button_calcularPago))))
                 .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -394,8 +394,8 @@ public class VistaEstetica extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmb_descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,13 +447,13 @@ public class VistaEstetica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_subtotalActionPerformed
 
-    private void txt_descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_descuentoActionPerformed
-
     private void txt_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_totalActionPerformed
+
+    private void cmb_descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_descuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_descuentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,6 +498,7 @@ public class VistaEstetica extends javax.swing.JFrame {
     public javax.swing.JButton button_calcularPago;
     public javax.swing.JButton button_cancelar;
     public javax.swing.JButton button_guardar;
+    public javax.swing.JComboBox<String> cmb_descuento;
     public javax.swing.JComboBox<String> cmb_veterinario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -521,7 +522,6 @@ public class VistaEstetica extends javax.swing.JFrame {
     public javax.swing.JTextArea txtArea_Descripcion;
     public javax.swing.JTextArea txtArea_observaciones;
     public javax.swing.JTextField txt_animal;
-    public javax.swing.JTextField txt_descuento;
     public javax.swing.JTextField txt_edad;
     public javax.swing.JTextField txt_idMascota;
     public javax.swing.JTextField txt_nombre;

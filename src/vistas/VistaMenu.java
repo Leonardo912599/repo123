@@ -46,6 +46,7 @@ public class VistaMenu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         panel_registrarMascota_Cliente = new javax.swing.JPanel();
         label_registarMascota_Cliente = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         panel_historiaClinica = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -57,10 +58,12 @@ public class VistaMenu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         panel_vacunacion_desparacitacion = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         panel_reportes = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         panel_veterinarios = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        label_nombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,8 +75,12 @@ public class VistaMenu extends javax.swing.JFrame {
 
         label_registarMascota_Cliente.setBackground(new java.awt.Color(0, 0, 0));
         label_registarMascota_Cliente.setForeground(new java.awt.Color(255, 255, 255));
-        label_registarMascota_Cliente.setText("Registrar Mascota-Cliente");
-        panel_registrarMascota_Cliente.add(label_registarMascota_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 147, 68));
+        label_registarMascota_Cliente.setText("Registrar Mascota y");
+        panel_registrarMascota_Cliente.add(label_registarMascota_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 120, 30));
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("cliente");
+        panel_registrarMascota_Cliente.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jPanel1.add(panel_registrarMascota_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, 70));
 
@@ -123,8 +130,12 @@ public class VistaMenu extends javax.swing.JFrame {
         panel_vacunacion_desparacitacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Vacunacion y Desparacitación ");
-        panel_vacunacion_desparacitacion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jLabel8.setText("Vacunacion y ");
+        panel_vacunacion_desparacitacion.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("desparacitación");
+        panel_vacunacion_desparacitacion.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         jPanel1.add(panel_vacunacion_desparacitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 180, 70));
 
@@ -177,6 +188,9 @@ public class VistaMenu extends javax.swing.JFrame {
 
         jPanel1.add(panel_veterinarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 180, 70));
 
+        label_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(label_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 160, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 700));
 
         pack();
@@ -221,13 +235,16 @@ public class VistaMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_registarMascota_Cliente;
     public javax.swing.JPanel panel_agendarCitas;
     public javax.swing.JPanel panel_consultas;

@@ -55,6 +55,9 @@ public class ControladorAgregarCita implements ActionListener {
                         vistaAgregarCita.txt_correo.setText(cliente.getCorreo_electronico());
                         
                     }
+
+                   
+                  
                 });
                 vistaBuscarMascota.setVisible(true);
             }
@@ -105,7 +108,7 @@ public class ControladorAgregarCita implements ActionListener {
                 agendarCita.setEstado((String) vistaAgregarCita.cmb_estado.getSelectedItem());
                 agendarCita.setFecha(vistaAgregarCita.dateChooser_fechaCita.getDate());
                 agendarCita.setDetalle_cita(vistaAgregarCita.txtArea_detalleCita.getText());
-                agendarCita.setObservaciones(vistaAgregarCita.textArea_observaciones.getText());
+                agendarCita.setObservaciones(vistaAgregarCita.txtArea_observaciones.getText());
                 agendarCita.setId_agendarCita(Integer.parseInt(vistaAgregarCita.txt_id_cita.getText()));
                 int id_mascota = agendarCitaDao.getIdMascota(vistaAgregarCita.txt_nombreMascota.getText());
                 agendarCita.setId_mascota(id_mascota);
@@ -133,9 +136,10 @@ public class ControladorAgregarCita implements ActionListener {
             vistaAgregarCita.txt_sexo.setText("");
             vistaAgregarCita.txt_horaCita.setText("");
             vistaAgregarCita.txtArea_detalleCita.setText(""); 
-            vistaAgregarCita.textArea_observaciones.setText("");
+            vistaAgregarCita.txtArea_observaciones.setText("");
             vistaAgregarCita.cmb_estado.setSelectedIndex(0);
             vistaAgregarCita.cmb_servicios.setSelectedIndex(0);
+            vistaAgregarCita.txt_id_cita.setText("");
       
     }
 }

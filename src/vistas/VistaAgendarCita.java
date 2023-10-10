@@ -24,7 +24,7 @@ public class VistaAgendarCita extends javax.swing.JFrame {
     public VistaAgendarCita() {
         initComponents();
         setTitle("Agenda de Citas");
-        setSize(1130,500);
+        setSize(1200,500);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();
@@ -56,6 +56,7 @@ public class VistaAgendarCita extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         button_buscar = new javax.swing.JButton();
         txt_estadoCita = new javax.swing.JTextField();
+        button_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -137,6 +138,11 @@ public class VistaAgendarCita extends javax.swing.JFrame {
 
         txt_estadoCita.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        button_actualizar.setBackground(new java.awt.Color(51, 204, 255));
+        button_actualizar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        button_actualizar.setForeground(new java.awt.Color(255, 255, 255));
+        button_actualizar.setText("Actualizar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,7 +165,9 @@ public class VistaAgendarCita extends javax.swing.JFrame {
                         .addComponent(dateChooser_buscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(button_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                        .addGap(473, 473, 473)))
+                        .addGap(260, 260, 260)
+                        .addComponent(button_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -186,7 +194,8 @@ public class VistaAgendarCita extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dateChooser_buscarCita, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(dateChooser_buscarCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button_actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -265,6 +274,7 @@ public class VistaAgendarCita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton button_actualizar;
     public javax.swing.JButton button_agendarCita;
     public javax.swing.JButton button_borrarCita;
     public javax.swing.JButton button_buscar;

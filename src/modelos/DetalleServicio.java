@@ -10,25 +10,25 @@ import java.util.Date;
 
 public class DetalleServicio {
 
-   private int id_detalleServicio;
+    private int id_detalleServicio;
     private Date Fecha;
-    private Integer id_consulta;  
-    private Integer id_vacunacion;  
-    private Integer id_estetica;  
-    private int id_mascota;
-    private int id_veterinario;
+    private Consulta consulta;
+    private VacunacionDesparacitacion vacunacionDesparacitacion;
+    private Estetica estetica;  
+    private Mascota mascota;
+    private Veterinario veterinario;
 
     public DetalleServicio() {
     }
 
-    public DetalleServicio(int id_detalleServicio, Date Fecha, Integer id_consulta, Integer id_vacunacion, Integer id_estetica, int id_mascota, int id_veterinario) {
+    public DetalleServicio(int id_detalleServicio, Date Fecha, Consulta consulta, VacunacionDesparacitacion vacunacionDesparacitacion, Estetica estetica, Mascota mascota, Veterinario veterinario) {
         this.id_detalleServicio = id_detalleServicio;
         this.Fecha = Fecha;
-        this.id_consulta = id_consulta;
-        this.id_vacunacion = id_vacunacion;
-        this.id_estetica = id_estetica;
-        this.id_mascota = id_mascota;
-        this.id_veterinario = id_veterinario;
+        this.consulta = consulta;
+        this.vacunacionDesparacitacion = vacunacionDesparacitacion;
+        this.estetica = estetica;
+        this.mascota = mascota;
+        this.veterinario = veterinario;
     }
 
     public int getId_detalleServicio() {
@@ -47,49 +47,44 @@ public class DetalleServicio {
         this.Fecha = Fecha;
     }
 
-    public Integer getId_consulta() {
-        return id_consulta;
+    public Consulta getConsulta() {
+        return consulta;
     }
 
-    public void setId_consulta(Integer id_consulta) {
-        this.id_consulta = id_consulta;
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
     }
 
-    public Integer getId_vacunacion() {
-        return id_vacunacion;
+    public VacunacionDesparacitacion getVacunacionDesparacitacion() {
+        return vacunacionDesparacitacion;
     }
 
-    public void setId_vacunacion(Integer id_vacunacion) {
-        this.id_vacunacion = id_vacunacion;
+    public void setVacunacionDesparacitacion(VacunacionDesparacitacion vacunacionDesparacitacion) {
+        this.vacunacionDesparacitacion = vacunacionDesparacitacion;
     }
 
-    public Integer getId_estetica() {
-        return id_estetica;
+    public Estetica getEstetica() {
+        return estetica;
     }
 
-    public void setId_estetica(Integer id_estetica) {
-        this.id_estetica = id_estetica;
+    public void setEstetica(Estetica estetica) {
+        this.estetica = estetica;
     }
 
-    public int getId_mascota() {
-        return id_mascota;
+    public Mascota getMascota() {
+        return mascota;
     }
 
-    public void setId_mascota(int id_mascota) {
-        this.id_mascota = id_mascota;
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
     }
 
-    public int getId_veterinario() {
-        return id_veterinario;
+    public Veterinario getVeterinario() {
+        return veterinario;
     }
 
-    public void setId_veterinario(int id_veterinario) {
-        this.id_veterinario = id_veterinario;
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 
-    
-    
-   
-    
-    
 }

@@ -91,6 +91,7 @@ public class MascotaDao {
                 mascota.setColor(rs.getString("color"));
                 mascota.setTamano(rs.getString("tamano"));
                 mascota.setSexo(rs.getString("sexo"));
+                mascota.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
                 
                 Animal animal = new Animal();
                 animal.setNombre(rs.getString("nombreAnimal"));
@@ -106,6 +107,8 @@ public class MascotaDao {
 
     public Cliente obtenerClienteDeMascota(String nombreMascota) {
 
+        Cliente cliente = new Cliente();
+        
         String query = "SELECT c.* "
                 + "FROM cliente c "
                 + "INNER JOIN mascota m ON c.dni = m.dni "
@@ -118,20 +121,19 @@ public class MascotaDao {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                Cliente cliente = new Cliente();
+                
                 cliente.setDni(rs.getString("dni"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setApellidos(rs.getString("apellido"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setCorreo_electronico(rs.getString("correo_electronico"));
 
-                return cliente;
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
-        return null;
+         return cliente;
     }
     public int obtenerIdAnimal(String nombre) {
         int id_Animal = 0;
@@ -146,7 +148,7 @@ public class MascotaDao {
             if (rs.next()) {
                 id_Animal = rs.getInt("id_animal");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.toString());
         }
 
@@ -165,7 +167,7 @@ public class MascotaDao {
             if (rs.next()) {
                 id_Mascota = rs.getInt("id_mascota");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
           JOptionPane.showMessageDialog(null, e.toString());
         }
 

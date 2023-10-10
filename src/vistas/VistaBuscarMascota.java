@@ -17,7 +17,7 @@ public class VistaBuscarMascota extends javax.swing.JFrame {
     public VistaBuscarMascota() {
         initComponents();
         setTitle("Buscar Paciente");
-        setSize(800,500);
+        setSize(900,500);
         setResizable(false);
         setLocationRelativeTo(null);
         this.repaint();
@@ -57,7 +57,7 @@ public class VistaBuscarMascota extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nombre", "Animal", "Sexo", "Tamaño", "Color", "Raza", "Edad"
+                "Id", "Nombre", "Animal", "Sexo", "Tamaño", "Color", "Raza", "Edad", "Fecha_nacimiento"
             }
         ));
         jScrollPane1.setViewportView(table_mascotas);
@@ -75,11 +75,12 @@ public class VistaBuscarMascota extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addComponent(jLabel2)
                         .addGap(31, 31, 31)
-                        .addComponent(txt_buscarMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(txt_buscarMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(478, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +96,7 @@ public class VistaBuscarMascota extends javax.swing.JFrame {
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
