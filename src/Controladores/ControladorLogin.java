@@ -40,7 +40,7 @@ public class ControladorLogin implements ActionListener {
             } else {
                 veterinario = veterinarioDao.validar(usuario, contrasena);
 
-                if (veterinario.getNombre_usuario() != null) {
+                if (veterinario.getNombre_user()!= null) {
 
                     VistaMenu vistaMenu = new VistaMenu();
 

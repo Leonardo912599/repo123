@@ -2,32 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package modelos;
 
 
 public class Veterinario {
-
     private int id_veterinario;
-    private String nombre_usuario;
+    private String nombre_user;
     private String nombre;
     private String apellidos;
     private String celular;
     private String correo;
     private String contrasena;
 
-    public Veterinario() {
-    }
-
-    
-    public Veterinario(int id_veterinario, String nombre_usuario, String nombre, String apellidos, String celular, String correo, String contrasena) {
+    public Veterinario(int id_veterinario, String nombre_user, String nombre, String apellidos, String celular, String correo, String contrasena) {
         this.id_veterinario = id_veterinario;
-        this.nombre_usuario = nombre_usuario;
+        this.nombre_user = nombre_user;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.celular = celular;
         this.correo = correo;
         this.contrasena = contrasena;
+    }
+
+    public Veterinario() {
+        
     }
 
     public int getId_veterinario() {
@@ -38,12 +36,12 @@ public class Veterinario {
         this.id_veterinario = id_veterinario;
     }
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
+    public String getNombre_user() {
+        return nombre_user;
     }
 
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+    public void setNombre_user(String nombre_user) {
+        this.nombre_user = nombre_user;
     }
 
     public String getNombre() {
@@ -85,5 +83,6 @@ public class Veterinario {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+    
     
 }
